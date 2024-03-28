@@ -1,0 +1,31 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+hide footbox
+'생명선 자동 생성
+autoactivate on 
+
+actor "user" as user
+participant "GPT management" as gm
+participant "식물 사진 분석" as pa
+participant "GPT" as gpt
+
+gm -> gpt : 병해충 해결방법 질의(query)
+|||
+gpt --> gm : return(병해충 해결방법)
+gm -> gm : 문제 여부 파악
+alt 문제가 있을경우 
+    gpt --> gm : 해결방안 입력(해결방안)
+    gm --> gm : history setting()
+    gpt --> pa : 해결방안 입력(해결방법)
+    pa --> user : return(해결방법)
+    ref over user, gm, gpt : 사용자 추가 질의
+
+else 문제가 없을경우 
+    gpt --> pa: 해결방안 입력(false)
+    pa --> user : return(false)
+end
+
+
+
+@enduml

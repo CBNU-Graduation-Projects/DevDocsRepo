@@ -1,0 +1,17 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+hide footbox
+'생명선 자동 생성
+autoactivate on 
+
+participant "식물 잎 위치 탐지 모델" as ldm
+
+ldm -> ldm : 객체 위치 예측(Preprocessed data)
+|||
+ldm -> ldm : 예측된 위치 데이터 복구
+|||
+
+
+
+@enduml

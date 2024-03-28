@@ -1,0 +1,22 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+hide footbox
+'생명선 자동 생성
+autoactivate on 
+
+
+participant "식물사진" as pi
+participant "식물 질병 예측 모델" as pdm
+participant "식물 사진 분석" as pa
+
+pi -> pdm : 식물 질병 예측(잎 이미지)
+pdm -> pdm : data type 변환
+pdm -> pdm : 이미지 데이터 정규화
+pdm -> pdm : 객체 질병 예측(Preprocessed data)
+pdm --> pa : 식물 질병 입력(예측된 질병)
+pdm --> pi : ok
+
+
+
+@enduml

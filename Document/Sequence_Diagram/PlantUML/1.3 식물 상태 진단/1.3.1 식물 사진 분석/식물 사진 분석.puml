@@ -1,0 +1,24 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+hide footbox
+'생명선 자동 생성
+autoactivate on 
+
+actor "user" as user
+participant "식물사진" as pi
+participant "식물 잎 위치 탐지 모델" as ldm
+participant "식물 사진 분석" as pa
+participant "식물 질병 예측 모델" as pdm
+database "식물 사진 DB" as pdb
+
+user -> pi : 식물 사진 분석 요청
+pi -> pdb : 식물 사진 요청
+pdb --> pi : return(식물 사진)
+ref over ldm : 이미지 데이터 전처리
+ref over ldm : 객체 탐지
+ref over pi, ldm, pa : 잎 이미지 생성
+ref over pi, pdm, pa : 식물 질병 예측
+
+
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+hide footbox
+'생명선 자동 생성
+autoactivate on 
+
+actor "user" as user
+participant "식물사진" as pi
+participant "식물 사진 분석" as pa
+participant "GPT management" as gm
+participant "GPT" as gpt
+participant "식물" as plant
+database "식물 목록" as pld
+
+pi -> pa : 해결방법 질의
+pa -> gm : 해결방법 질의(분석 결과)
+gm -> plant : 식물 정보 요청
+ref over plant, pld : 식물 정보 조회
+plant --> gm : return(식물 정보)
+
+ref over gm : gpt query 생성
+ref over gm,pa,gpt : gpt를 통한 해결방법 생성
+
+
+
+@enduml

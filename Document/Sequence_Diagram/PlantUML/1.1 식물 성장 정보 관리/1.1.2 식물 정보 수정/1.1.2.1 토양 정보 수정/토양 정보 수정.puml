@@ -1,0 +1,27 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+hide footbox
+'생명선 자동 생성
+autoactivate on 
+
+actor "user" as user
+participant "토양 환경" as soil
+participant "식물" as pi
+
+user --> soil : 토질 수정
+user --> soil : PH 수정
+user -> soil : 토양 정보 수정
+soil -> soil : 토양 정보 유효성 검사
+alt 유효한 토양 정보
+    soil --> pi  : 식물 토양 정보 갱신 
+
+else 유효하지 않은 식물 정보
+    soil --> user : 에러 메시지 반환 
+
+end
+
+    
+
+
+@enduml

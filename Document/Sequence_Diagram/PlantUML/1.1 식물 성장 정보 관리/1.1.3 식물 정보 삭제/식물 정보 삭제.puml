@@ -1,0 +1,23 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+hide footbox
+'생명선 자동 생성
+autoactivate on 
+
+actor "user" as user
+participant "식물" as plant
+participant "식물 사진 관리" as pi
+database "식물 사진 DB" as pdb
+database "식물 목록" as pldb
+
+user -> plant : 식물 삭제(id)
+opt A photo of a plant exists
+    ref over plant, pi, pdb : 식물 사진 삭제
+end
+plant -> pldb : 식물 삭제(id)
+pldb --> plant : ok
+plant --> user : ok
+  
+
+@enduml

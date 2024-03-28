@@ -1,0 +1,17 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+hide footbox
+'생명선 자동 생성
+autoactivate on 
+
+participant "식물 잎 위치 탐지 모델" as ldm
+
+ldm -> ldm : 이미지 크기 조정
+ldm -> ldm : data type 변환
+ldm -> ldm : 이미지 데이터 정규화
+
+
+
+
+@enduml

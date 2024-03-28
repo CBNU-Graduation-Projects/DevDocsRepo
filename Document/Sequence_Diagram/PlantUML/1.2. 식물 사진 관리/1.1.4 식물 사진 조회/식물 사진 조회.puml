@@ -1,0 +1,19 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+hide footbox
+'생명선 자동 생성
+autoactivate on 
+
+actor "user" as user
+participant "식물 사진 관리" as pi
+database "식물 사진 DB" as pdb
+
+user -> pi : 식물 사진 조회 요청(num)
+
+pi -> pdb : 식물 사진 조회(num)
+pdb --> pi : return(식물 사진)
+pi --> user : view(식물 사진)
+
+
+@enduml

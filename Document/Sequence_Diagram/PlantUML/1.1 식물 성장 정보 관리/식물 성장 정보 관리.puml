@@ -1,0 +1,18 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+hide footbox
+'생명선 자동 생성
+autoactivate on 
+
+actor "user" as user
+participant "식물" as pi
+database "식물 목록" as pdb
+
+ref over user, pi, pdb :식물 정보 입력
+ref over user, pi, pdb :식물 정보 수정
+ref over user, pi, pdb :식물 정보 삭제
+ref over user, pi, pdb :식물 정보 조회
+
+
+@enduml

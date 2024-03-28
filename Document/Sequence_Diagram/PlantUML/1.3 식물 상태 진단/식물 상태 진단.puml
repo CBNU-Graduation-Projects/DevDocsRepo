@@ -1,0 +1,24 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+hide footbox
+'생명선 자동 생성
+autoactivate on 
+
+actor "user" as user
+participant "식물 잎 위치 탐지 모델" as ldm
+participant "식물 질병 예측 모델" as pdm
+participant "식물사진" as pi
+participant "식물 사진 분석" as pa
+participant "식물" as plant
+database "식물 목록" as pld
+database "식물 사진 DB" as pdb
+participant "GPT management" as gm
+participant "GPT" as gpt
+|||
+ref over user, pi, pdm, pa, pdb : 식물 사진 분석
+ref over gpt, gm, pa,pi : 병해충 해결방법 탐색
+ref over user, gpt : 사용자 추가 질의
+|||
+
+@enduml

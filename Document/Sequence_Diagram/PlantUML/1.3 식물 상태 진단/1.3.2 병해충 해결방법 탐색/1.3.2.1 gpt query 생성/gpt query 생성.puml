@@ -1,0 +1,16 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+hide footbox
+'생명선 자동 생성
+autoactivate on 
+
+participant "GPT management" as gm
+gm -> gm : 분석 결과 텍스트화(분석결과)
+gm -> gm : 식물 정보 텍스트화(식물 정보)
+gm -> gm : GPT Query 생성(분석, 정보)
+|||
+
+
+
+@enduml

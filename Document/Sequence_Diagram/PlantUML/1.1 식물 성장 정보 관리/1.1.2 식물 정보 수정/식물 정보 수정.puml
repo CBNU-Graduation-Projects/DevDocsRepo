@@ -1,0 +1,34 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+hide footbox
+'생명선 자동 생성
+autoactivate on 
+
+actor "user" as user
+participant "토양 환경" as soil
+participant "식물" as pi
+database "식물 목록" as pdb
+
+user --> pi : 식물 종류 재선택
+user --> pi : 식물 관수 주기 수정
+user --> pi : 식물 광선량 정보 수정
+ref over user, soil, pi : 토양 정보 수정
+
+user -> pi : 식물 정보 수정
+
+pi -> pi : 식물 정보 유효성 검사
+alt 유효한 식물 정보
+    pi -> pdb : 식물 정보 갱신
+    pdb --> pi : ok
+    pi --> user : ok 
+
+else 유효하지 않은 식물 정보
+    pi --> user : 에러 메시지 반환
+
+end
+
+    
+
+
+@enduml

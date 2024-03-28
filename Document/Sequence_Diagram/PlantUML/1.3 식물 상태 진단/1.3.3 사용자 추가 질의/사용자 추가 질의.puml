@@ -1,0 +1,29 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+hide footbox
+'생명선 자동 생성
+autoactivate on 
+
+actor "user" as user
+participant "식물 사진 분석" as pa
+participant "GPT management" as gm
+participant "GPT" as gpt
+
+loop 추가 질의가 있다 
+    user --> gm : 사용자 추가 질의 전달(질문)
+    gm -> gm : gpt 추가 query 생성(질문)
+    gm -> gpt : 추가 질의 전달(query)
+    
+    gpt -> gm : 추가 질의 답변 입력(답변)
+    alt 추가 질의 답변이 유효할때
+        gm --> gm : history setting()
+        gpt --> pa : 해결방안 입력(해결방법)
+        pa --> user : return(해결방법)
+    else 추가 질의 답변이 유효하지 않을때
+        gm --> user :return(False)
+    end
+end
+
+
+@enduml

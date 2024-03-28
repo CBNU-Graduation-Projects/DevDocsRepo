@@ -1,0 +1,28 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+hide footbox
+'생명선 자동 생성
+autoactivate on 
+
+actor "user" as user
+participant "식물 사진 관리" as pi
+database "식물 사진 DB" as pdb
+
+user -> pi : 식물 사진 등록 요청(식물 사진)
+
+pi -> pi : 이미지 파일 검증
+alt 적합한 이미지 데이터일 경우
+    pi -> pdb : 사진 등록(image, num)
+    pdb --> pi : ok
+    pi --> user : ok 
+
+else 적합하지 않은 이미지 데이터일 경우
+    pi --> user : 이미지 파일 에러 반환
+
+end
+
+    
+
+
+@enduml
